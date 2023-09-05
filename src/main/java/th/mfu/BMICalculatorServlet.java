@@ -9,7 +9,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 //TODO: add webservlet to "/calbmi"
+<<<<<<< HEAD
 @WebServlet("/calbmi")
+=======
+@WebServlet(urlPatterns = "/calbmi")
+>>>>>>> refs/remotes/origin/master
 public class BMICalculatorServlet extends HttpServlet{
 
     @Override
@@ -21,15 +25,36 @@ public class BMICalculatorServlet extends HttpServlet{
         //TODO: calculate bmi
         double weight = Double.parseDouble(weightinStr);
         double height = Double.parseDouble(heightinStr);
+<<<<<<< HEAD
         double result = weight/(height*height);
         result = Math.round(result);
         //TODO: determine the built from BMI
         
       
-        //TODO: add bmi and built to the request's attribute
+=======
 
+        double result = weight/(height*height);
+        result = Math.round(result);
+        //TODO: determine the built from BMI
+        String bmi_result;
+        if(result<18.5){
+            bmi_result = "underweight";
+        }else if(result>=18.5 && result<25){
+            bmi_result ="normal";
+        }else if(result>=25 && result<30){
+            bmi_result ="overweight";
+        }else if(result>=30&& result<35){
+            bmi_result="obese";
+        }else{
+            bmi_result="extremely obese";
+        }
+>>>>>>> refs/remotes/origin/master
+        //TODO: add bmi and built to the request's attribute
+        request.setAttribute("result",result);
+        request.setAttribute("BMI_result",bmi_result);
+       
         //TODO: forward to jsp
-           
+          request.getRequestDispatcher("bmi_result.jsp").forward(request,response);
     }
     
 }
